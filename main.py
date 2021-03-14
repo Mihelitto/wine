@@ -1,13 +1,13 @@
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from datetime import date
-import pandas
+import pandas as pd
 
-excel_data_df = pandas.read_excel("wine3.xlsx", keep_default_na=False, index_col=0)
-categories = list(set(excel_data_df.index.to_list()))
+excel_data_df = pd.read_excel("wine3.xlsx", keep_default_na=False, index_col=0)
+categories = sorted(list(set(excel_data_df.index.to_list())))
 drinks = dict()
-for cat in categories:
-    drinks[cat] = excel_data_df.loc[cat].to_dict(orient="records")
+for category in categories:
+    drinks[category] = excel_data_df.loc[category].to_dict(orient="records")
 
 env = Environment(
     loader=FileSystemLoader('.'),
@@ -19,8 +19,8 @@ years = date.today().year - 1920
 
 render_page = template.render(years=years, drinks=drinks)
 
-with open("index.html", "w", encoding="utf8") as f:
-    f.write(render_page)
+with open("index.html", "w", encoding="utf8") as file:
+    file.write(render_page)
 
 server = HTTPServer(('0.0.0.0', 8000), SimpleHTTPRequestHandler)
 server.serve_forever()
