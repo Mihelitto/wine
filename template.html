@@ -113,28 +113,31 @@
             </p>
           </div>
         </div>
-        {% for wine in wines %}
+
+        {% for category in drinks %}
         <div class="row">
           <div class="col-12 section-title text-center mb-5">
-            <h2 class="d-block">{{wine}}</h2>
+            <h2 class="d-block">{{category}}</h2>
         <div class="row">
-          {% for w in wines[wine] %}
+
+          {% for drink in drinks[category] %}
           <div class="col-lg-4 mb-5 col-md-6">
             <div class="wine_v_1 text-center pb-4 pt-5">
-              <img src="images/{{ w.Картинка }}" alt="Image" class="img-fluid">
+              <img src="images/{{ drink.Картинка }}" alt="Image" class="img-fluid">
               <div>
-                <h3 class="heading mt-3 mb-3 text-dark">{{ w.Название }}</h3>
+                <h3 class="heading mt-3 mb-3 text-dark">{{ drink.Название }}</h3>
                 <p>
-                  {% if w.Сорт %}
-                  Сорт винограда - {{ w.Сорт }}<br/>
+                  {% if drink.Сорт %}
+                  Сорт винограда - {{ drink.Сорт }}<br/>
                   {% endif %}
-                  <span class="price">{{ w.Цена }} р.</span>
+                  <span class="price">{{ drink.Цена }} р.</span>
                 </p>
               </div>
             </div>
           </div>
           {% endfor %}
           {% endfor %}
+
         </div>
       </div>
     </div>

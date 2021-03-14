@@ -5,9 +5,9 @@ import pandas
 
 excel_data_df = pandas.read_excel("wine2.xlsx", keep_default_na=False, index_col=0)
 categories = list(set(excel_data_df.index.to_list()))
-wines = dict()
+drinks = dict()
 for cat in categories:
-    wines[cat] = excel_data_df.loc[cat].to_dict(orient="records")
+    drinks[cat] = excel_data_df.loc[cat].to_dict(orient="records")
 
 env = Environment(
     loader=FileSystemLoader('.'),
@@ -17,7 +17,7 @@ env = Environment(
 template = env.get_template('template.html')
 years = date.today().year - 1920
 
-render_page = template.render(years=years, wines=wines)
+render_page = template.render(years=years, drinks=drinks)
 
 with open("index.html", "w", encoding="utf8") as f:
     f.write(render_page)
