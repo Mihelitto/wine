@@ -16,6 +16,12 @@ env = Environment(
 
 template = env.get_template('template.html')
 years = date.today().year - 1920
+if 10 < years / 100 < 20:
+    years = str(years) + " лет"
+elif years % 100 == 1:
+    years = str(years) + " год"
+elif 1 < years % 100 < 5:
+    years = str(years) + " годa"
 
 render_page = template.render(years=years, drinks=drinks)
 
