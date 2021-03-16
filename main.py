@@ -3,7 +3,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from datetime import date
 import pandas as pd
 
-excel_data_df = pd.read_excel("wine3.xlsx", keep_default_na=False, index_col=0)
+excel_data_df = pd.read_excel("wine.xlsx", keep_default_na=False, index_col=0)
 categories = sorted(list(set(excel_data_df.index.to_list())))
 drinks = dict()
 for category in categories:
