@@ -4,3 +4,4 @@ env/
 .replit
 index.html
 *.xlsx
+.env
