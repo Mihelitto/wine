@@ -7,11 +7,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 if os.getenv("DATA_FILE"):
-    DATA_FILE = os.getenv("DATA_FILE")
+    data_file = os.getenv("DATA_FILE")
 else:
-    DATA_FILE = "wine.xlsx"
+    data_file = "wine.xlsx"
 
-excel_data_df = pd.read_excel(DATA_FILE, keep_default_na=False, index_col=0)
+excel_data_df = pd.read_excel(data_file, keep_default_na=False, index_col=0)
 categories = sorted(list(set(excel_data_df.index.to_list())))
 drinks = dict()
 for category in categories:
